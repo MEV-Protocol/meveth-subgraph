@@ -1,0 +1,34 @@
+type MevEth @entity {
+  id: ID!
+  totalRewards: BigDecimal!
+  token: Token!
+}
+
+type Account @entity {
+  id: ID!
+  address: Bytes!
+  balances: [AccountBalance!]! @derivedFrom(field: "account")
+}
+
+type AccountBalance @entity {
+  id: ID!
+  account: Account!
+  token: Token!
+  amount: BigDecimal!
+}
+
+type Token @entity {
+  id: ID!
+  address: Bytes!
+  decimals: Int!
+  symbol: String!
+  totalSupply: BigDecimal!
+  balances: [AccountBalance!]! @derivedFrom(field: "token")
+}
+
+type RewardEvent @entity {
+  id: ID!
+  blockNumber: BigInt!
+  blockTime: BigInt!
+  amount: BigDecimal!
+}

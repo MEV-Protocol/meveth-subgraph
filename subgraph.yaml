@@ -1,0 +1,28 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: MevEth
+    network: mainnet
+    source:
+      address: "0x24Ae2dA0f361AA4BE46b48EB19C91e02c5e4f27E"
+      abi: MevEth
+      startBlock: 18278049
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - MevEth
+        - Token
+        - TransferEvent
+      abis:
+        - name: MevEth
+          file: ./abis/MevEth.json
+      eventHandlers:
+        - event: Rewards(address,uint256)
+          handler: handleRewards
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/MevEth.ts
