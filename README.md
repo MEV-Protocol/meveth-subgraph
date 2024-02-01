@@ -7,13 +7,13 @@ Subgraph to index mevETH.
 Explorer page with playground:
 
 ```
-https://thegraph.com/explorer/subgraphs/[SUBGRAPH_ID]
+https://thegraph.com/explorer/subgraphs/BsYVtdR7jcHXCptQBDjyPeMqWoRzZxJsSj5k4j67sKrS
 ```
 
 GraphQL API url (API key is needed):
 
 ```
-https://gateway.thegraph.com/api/[api-key]/subgraphs/id/[SUBGRAPH_ID]
+https://gateway.thegraph.com/api/[api-key]/subgraphs/id/BsYVtdR7jcHXCptQBDjyPeMqWoRzZxJsSj5k4j67sKrS
 ```
 
 ## Build
