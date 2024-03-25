@@ -1,37 +1,9 @@
-import { Address, BigDecimal } from "@graphprotocol/graph-ts";
-import { Rewards, Transfer } from "../generated/MevEth/MevEth";
-import { MevEth, TransferEvent, RewardEvent } from "../generated/schema";
+import { BigDecimal } from "@graphprotocol/graph-ts";
+import { Transfer } from "../generated/yETH/ERC20";
+import { TransferEvent } from "../generated/schema";
 import { getOrCreateAccount, increaseAccountBalance, decreaseAccountBalance } from "./account";
 import { getOrCreateToken } from "./token";
-import { toDecimal } from "./helper";
-
-function isMint(event: Transfer): boolean {
-  return event.params.from == Address.zero();
-}
-
-function isBurn(event: Transfer): boolean {
-  return event.params.to == Address.zero();
-}
-
-export function handleRewards(event: Rewards): void {
-  let mevEth = MevEth.load("1");
-  let token = getOrCreateToken(event.address);
-  let rewardAmountDecimal = toDecimal(event.params.amount, token.decimals);
-  if (!mevEth) {
-    mevEth = new MevEth("1");
-    mevEth.token = token.id;
-    mevEth.totalRewards = BigDecimal.zero();
-    mevEth.save();
-  }
-  mevEth.totalRewards = mevEth.totalRewards.plus(rewardAmountDecimal);
-  mevEth.save();
-
-  let rewardEvent = new RewardEvent(event.transaction.hash.toHex() + "-" + event.logIndex.toString());
-  rewardEvent.blockNumber = event.block.number;
-  rewardEvent.blockTime = event.block.timestamp;
-  rewardEvent.amount = rewardAmountDecimal;
-  rewardEvent.save();
-}
+import { toDecimal, isMint, isBurn } from "./helper";
 
 export function handleTransfer(event: Transfer): void {
   let token = getOrCreateToken(event.address);

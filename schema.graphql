@@ -4,7 +4,14 @@ type MevEth @entity {
   token: Token!
 }
 
-type Account @entity {
+type RewardEvent @entity(immutable: true) {
+  id: ID!
+  blockNumber: BigInt!
+  blockTime: BigInt!
+  amount: BigDecimal!
+}
+
+type Account @entity(immutable: true) {
   id: ID!
   address: Bytes!
   balances: [AccountBalance!]! @derivedFrom(field: "account")
@@ -19,16 +26,19 @@ type AccountBalance @entity {
 
 type Token @entity {
   id: ID!
-  address: Bytes!
   decimals: Int!
   symbol: String!
   totalSupply: BigDecimal!
   balances: [AccountBalance!]! @derivedFrom(field: "token")
+  holdersCount: Int!
 }
 
-type RewardEvent @entity {
+type TransferEvent @entity(immutable: true) {
   id: ID!
+  from: Bytes!
+  to: Bytes!
+  amount: BigDecimal!
+  token: Token!
   blockNumber: BigInt!
   blockTime: BigInt!
-  amount: BigDecimal!
 }

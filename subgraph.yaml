@@ -1,4 +1,4 @@
-specVersion: 0.0.2
+specVersion: 0.0.4
 schema:
   file: ./schema.graphql
 dataSources:
@@ -15,14 +15,174 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - MevEth
+        - Account
+        - AccountBalance
         - Token
         - TransferEvent
       abis:
         - name: MevEth
           file: ./abis/MevEth.json
+        - name: ERC20
+          file: ./abis/ERC20.json
       eventHandlers:
         - event: Rewards(address,uint256)
           handler: handleRewards
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
       file: ./src/MevEth.ts
+
+  - kind: ethereum/contract
+    name: yETH
+    network: mainnet
+    source:
+      address: "0x1BED97CBC3c24A4fb5C069C6E311a967386131f7"
+      abi: ERC20
+      startBlock: 17583859
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Account
+        - AccountBalance
+        - Token
+        - TransferEvent
+      abis:
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/erc20.ts
+
+  - kind: ethereum/contract
+    name: st-yETH
+    network: mainnet
+    source:
+      address: "0x583019fF0f430721aDa9cfb4fac8F06cA104d0B4"
+      abi: ERC20
+      startBlock: 17815723
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Account
+        - AccountBalance
+        - Token
+        - TransferEvent
+      abis:
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/erc20.ts
+
+  - kind: ethereum/contract
+    name: AuraPool
+    network: mainnet
+    source:
+      address: "0xF9b6BdC7fbf3B760542ae24cB939872705108399"
+      abi: RewardPool
+      startBlock: 18574915
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Account
+        - AccountBalance
+        - Token
+        - TransferEvent
+      abis:
+        - name: RewardPool
+          file: ./abis/RewardPool.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: Staked(indexed address,uint256)
+          handler: handleStaked
+        - event: Withdrawn(indexed address,uint256)
+          handler: handleWithdrawn
+      file: ./src/rewardPool.ts
+
+  - kind: ethereum/contract
+    name: CvxPool
+    network: mainnet
+    source:
+      address: "0x9A767E19cD9E5c9eD8494281da409Be38Fc76015"
+      abi: RewardPool
+      startBlock: 18646050
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Account
+        - AccountBalance
+        - Token
+        - TransferEvent
+      abis:
+        - name: RewardPool
+          file: ./abis/RewardPool.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: Staked(indexed address,uint256)
+          handler: handleStaked
+        - event: Withdrawn(indexed address,uint256)
+          handler: handleWithdrawn
+      file: ./src/rewardPool.ts
+
+  - kind: ethereum/contract
+    name: CvxYEthPool
+    network: mainnet
+    source:
+      address: "0xB0867ADE998641Ab1Ff04cF5cA5e5773fA92AaE3"
+      abi: RewardPool
+      startBlock: 18180385
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Account
+        - AccountBalance
+        - Token
+        - TransferEvent
+      abis:
+        - name: RewardPool
+          file: ./abis/RewardPool.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: Staked(indexed address,uint256)
+          handler: handleStaked
+        - event: Withdrawn(indexed address,uint256)
+          handler: handleWithdrawn
+      file: ./src/rewardPool.ts
+
+  - kind: ethereum/contract
+    name: StakedBPT
+    network: mainnet
+    source:
+      address: "0xE14c06F691D1a95E5cDbfb1cC248dF5B7053B549"
+      abi: ERC20
+      startBlock: 19453086
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Account
+        - AccountBalance
+        - Token
+        - TransferEvent
+      abis:
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/erc20.ts

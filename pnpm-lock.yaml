@@ -9,8 +9,8 @@ dependencies:
     specifier: ^0.67.2
     version: 0.67.2(@types/node@20.11.10)(node-fetch@3.3.2)(typescript@5.3.3)
   '@graphprotocol/graph-ts':
-    specifier: ^0.32.0
-    version: 0.32.0
+    specifier: ^0.34.0
+    version: 0.34.0
 
 packages:
 
@@ -256,8 +256,8 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@graphprotocol/graph-ts@0.32.0:
-    resolution: {integrity: sha512-YfKLT2w+ItXD/VPYQiAKtINQONVsAOkcqVFMHlhUy0fcEBVWuFBT53hJNI0/l5ujQa4TSxtzrKW/7EABAdgI8g==}
+  /@graphprotocol/graph-ts@0.34.0:
+    resolution: {integrity: sha512-gnhjai65AV4YMYe9QHGz+HP/jdzI54z/nOfEXZFfh6m987EP2iy3ycLXrTi+ahcogHH7vtoWFdXbUzZbE8bCAg==}
     dependencies:
       assemblyscript: 0.19.10
     dev: false

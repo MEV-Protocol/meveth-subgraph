@@ -1,7 +1,6 @@
 import { Address, BigDecimal } from "@graphprotocol/graph-ts";
-import { MevEth as ERC20 } from "../generated/MevEth/MevEth";
+import { ERC20 } from "../generated/yETH/ERC20";
 import { Token } from "../generated/schema";
-
 import { toDecimal } from "./helper";
 
 export function getOrCreateToken(tokenAddress: Address): Token {

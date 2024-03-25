@@ -1,5 +1,5 @@
 import { Address, BigDecimal, BigInt } from "@graphprotocol/graph-ts";
-import { Transfer } from "../generated/MevEth/MevEth";
+import { Transfer } from "../generated/yETH/ERC20";
 
 export function toDecimal(value: BigInt, decimals: u32): BigDecimal {
   let precision = BigInt.fromI32(10)
